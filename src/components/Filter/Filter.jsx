@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFilter } from "redux/selectors";
+import { filterChange } from 'redux/slices';
 import css from "./Filter.module.css";
 
-export default function Filter({ onChange }) {
-  const [filter, setFilter] = useState('');
+export default function Filter() {
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
 
   const handleChange = e => {
-    setFilter(e.target.value);
-    onChange(e.target.value);
+    dispatch(filterChange(e.target.value));
    }
 
   return (
@@ -24,8 +26,4 @@ export default function Filter({ onChange }) {
       />
     </label>
   )
-}
-
-Filter.propTypes = {
-    onChange: PropTypes.func.isRequired,
 }
