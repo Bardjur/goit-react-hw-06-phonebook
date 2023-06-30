@@ -6,13 +6,13 @@ import Filter from "./Filter";
 import ContactList from "./ContactList";
 import css from './App.module.css';
 import { getContacts, getFilter } from "redux/selectors";
-import { addContact, delContact, filterChange } from "redux/actions";
+import { addContact, delContact, filterChange } from "redux/slices";
 
 export default function App() {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
-
+console.log(contacts);
   const normalizeFilter = filter.toLowerCase();
   const filteredData = contacts.filter(({ name }) => name.toLowerCase().includes(normalizeFilter));
 
